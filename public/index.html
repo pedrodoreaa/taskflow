@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TaskFlow - gerenciador de tarefas com IA"
+    />
+    <title>TaskFlow | Gerenciador de tarefas</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="TaskFlow início">
+          <span class="brand-icon">✓</span>
+          <span>TaskFlow</span>
+        </a>
+        <span class="api-status">
+          <span class="status-dot"></span>
+          Dados salvos neste navegador
+        </span>
+      </header>
+
+      <main class="container">
+        <section class="welcome">
+          <p class="eyebrow">ORGANIZE SUA ROTINA</p>
+          <h1>Suas tarefas, <span>sob controle.</span></h1>
+          <p class="subtitle">
+            Planeje seu dia, acompanhe seu progresso e tire suas ideias do
+            papel.
+          </p>
+        </section>
+
+        <section class="stats" aria-label="Resumo das tarefas">
+          <article class="stat-card">
+            <span class="stat-label">Total de tarefas</span>
+            <strong id="totalTasks">—</strong>
+            <span class="stat-note">Tarefas cadastradas</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Pendentes</span>
+            <strong id="pendingTasks">—</strong>
+            <span class="stat-note">Ainda por fazer</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Concluídas</span>
+            <strong id="completedTasks">—</strong>
+            <span class="stat-note">Tarefas finalizadas</span>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <h2 id="formHeading">Nova tarefa</h2>
+              <p>Adicione uma tarefa à sua lista.</p>
+            </div>
+          </div>
+
+          <form id="taskForm">
+            <label for="taskTitle">Título da tarefa</label>
+            <div class="form-row">
+              <input
+                id="taskTitle"
+                name="title"
+                type="text"
+                placeholder="Ex.: Estudar JavaScript"
+                maxlength="120"
+                required
+              />
+              <button class="primary-button" id="submitButton" type="submit">
+                + Adicionar tarefa
+              </button>
+              <button
+                class="secondary-button hidden"
+                id="cancelEdit"
+                type="button"
+              >
+                Cancelar
+              </button>
+            </div>
+            <p
+              id="formMessage"
+              class="message"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+        </section>
+
+        <section class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Criar com IA</h2>
+              <p>
+                Descreva o que precisa fazer e a IA sugere tarefas com
+                prioridade.
+              </p>
+            </div>
+          </div>
+
+          <label for="iaInput">Descrição</label>
+          <textarea
+            id="iaInput"
+            rows="3"
+            maxlength="1000"
+            placeholder="Ex.: preparar apresentação até sexta, revisar o código e subir no GitHub"
+          ></textarea>
+          <div class="form-row">
+            <button class="primary-button" id="iaButton" type="button">
+              ✦ Gerar com IA
+            </button>
+          </div>
+          <p
+            id="iaMessage"
+            class="message"
+            role="status"
+            aria-live="polite"
+          ></p>
+          <div id="iaSuggestions" class="suggestions hidden"></div>
+        </section>
+
+        <section class="task-section">
+          <div class="section-heading task-heading">
+            <div>
+              <h2>Minha lista</h2>
+              <p id="listDescription">Acompanhe suas atividades.</p>
+            </div>
+
+            <label class="search-box">
+              <span class="sr-only">Pesquisar tarefas</span>
+              <span aria-hidden="true">⌕</span>
+              <input
+                id="searchInput"
+                type="search"
+                placeholder="Buscar tarefa..."
+              />
+            </label>
+          </div>
+
+          <div class="filters" aria-label="Filtrar tarefas">
+            <button class="filter active" data-filter="all" type="button">
+              Todas
+            </button>
+            <button class="filter" data-filter="pending" type="button">
+              Pendentes
+            </button>
+            <button class="filter" data-filter="completed" type="button">
+              Concluídas
+            </button>
+          </div>
+
+          <div id="taskList" class="task-list"></div>
+
+          <div id="emptyState" class="empty-state hidden">
+            <span class="empty-icon">✦</span>
+            <h3>Nenhuma tarefa encontrada</h3>
+            <p>Tente outra busca ou adicione uma nova tarefa.</p>
+          </div>
+
+          <div class="list-footer">
+            <span id="visibleCount">0 tarefas</span>
+            <button id="resetButton" class="text-button" type="button">
+              ↻ Restaurar exemplos
+            </button>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <p>TaskFlow · Projeto de estudo Front-end</p>
+          <p>HTML · CSS · JavaScript · Flask · IA</p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
